@@ -1,0 +1,29 @@
+<?php
+
+namespace App\Http\Controllers;
+
+use Illuminate\Http\Request;
+use Inertia\Inertia;
+
+
+class PageController extends Controller
+{
+    public function home()
+    {
+        return Inertia::render('Welcome');
+    }
+
+    public function blog()
+    {
+        return Inertia::render('Blog');
+    }
+
+    public function contact()
+    {
+        return Inertia::render('Contact');
+    }
+    public function publishing(Request $request)
+    {
+        return Inertia::render('Publishing');
+    }
+}

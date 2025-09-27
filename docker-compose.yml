@@ -1,0 +1,58 @@
+version: '3.8'
+
+services:
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: sushashon
+    ports:
+      - "80:80"
+    volumes:
+      - .:/var/www/html
+    working_dir: /var/www/html
+    networks:
+      - sushashon_net
+#  web:
+#    build: ../bakome_web
+#    networks:
+#        - bakome_net
+#    ports:
+#        - "3000:3000"
+#    environment:
+#        NODE_ENV: development
+
+  sushashon_db_host:
+    image: mysql:8.0
+    container_name: sushashon-mysql-db
+    ports:
+      - "3306:3306"
+    environment:
+      MYSQL_ROOT_PASSWORD: sushashon
+      MYSQL_DATABASE: sushashon_db
+      MYSQL_USER: sushashon_db_user
+      MYSQL_PASSWORD: sushashon
+    volumes:
+      - db_data:/var/lib/mysql
+    networks:
+      - sushashon_net
+
+  phpmyadmin:
+    image: phpmyadmin/phpmyadmin
+    container_name: sushashon_phpmyadmin
+    platform: linux/amd64
+    ports:
+      - "8080:80"
+    environment:
+      PMA_HOST: sushashon_db_host
+      PMA_USER: sushashon_db_user
+      PMA_PASSWORD: sushashon
+    networks:
+      - sushashon_net
+
+networks:
+  sushashon_net:
+    driver: bridge
+
+volumes:
+  db_data:

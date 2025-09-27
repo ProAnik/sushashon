@@ -1,0 +1,17 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+
+.theme-color-background {
+    background-color: #20026D;
+}
+.theme-nav-color {
+    background-color: #4B9EFF;
+}
+
+@media only screen and (max-width: 767px) {
+    .theme-color-background {
+        background-size: contain;
+    }
+}
