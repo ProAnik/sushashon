@@ -16,7 +16,7 @@ import MainLayout from "@/Layouts/MainLayout.vue";
                         যোগাযোগ
                     </h1>
                 </div>
-                <div class="text-white">
+                <div class="text-gray-900 dark:text-white">
                     ...... কার্যক্রম খুব শীঘ্রই শুরু করা হবে......
                 </div>
             </div>
