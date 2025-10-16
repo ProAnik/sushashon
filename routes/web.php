@@ -10,6 +10,11 @@ Route::get('/blog', [PageController::class, 'blog'])->name('blog');
 Route::get('/publish', [PageController::class, 'publishing'])->name('publishing');
 Route::get('/contact', [PageController::class, 'contact'])->name('contact');
 
+Route::get('/download-pdf', function () {
+    $file = public_path('/inclusive_gov.pdf');
+    return response()->download($file, 'inclusive_gov.pdf');
+});
+
 
 Route::get('/dashboard', function () {
     return Inertia::render('Dashboard');
@@ -20,5 +25,7 @@ Route::middleware('auth')->group(function () {
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
+
+
 
 require __DIR__.'/auth.php';
